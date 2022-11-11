@@ -1,0 +1,25 @@
+{
+  "name": "cs3219_e",
+  "version": "1.0.0",
+  "description": "Caching Task using Redis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgabelarde/cs3219_E.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rgabelarde/cs3219_E/issues"
+  },
+  "homepage": "https://github.com/rgabelarde/cs3219_E#readme",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "express": "^4.18.2",
+    "redis": "^4.5.0"
+  }
+}
