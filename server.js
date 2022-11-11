@@ -5,6 +5,7 @@ const axios = require("axios");
 const redis = require("redis");
 const mongoose = require("mongoose");
 const timer = require('./timer');
+const photoController = require('./controllers/photoController');
 
 mongoose.connect(process.env.DB_LOCAL_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -24,14 +25,6 @@ let redisClient;
   await redisClient.connect();
 })();
 
-async function fetchApiData() {
-  const apiResponse = await axios.get(
-    `https://jsonplaceholder.typicode.com/photos`
-  );
-  console.log("Request sent to the API");
-  return apiResponse.data;
-}
-
 async function getPhotosData(req, res) {
   const photos = 'cachedPhotos';
   let results;
@@ -43,7 +36,7 @@ async function getPhotosData(req, res) {
       isCached = true;
       results = JSON.parse(cacheResults);
     } else {
-      results = await fetchApiData();
+      results = await photoController.getAllPhotos();
       if (results.length === 0) {
         throw "API returned an empty array";
       }
