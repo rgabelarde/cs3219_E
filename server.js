@@ -1,7 +1,15 @@
+require("dotenv").config();
+
 const express = require("express");
 const axios = require("axios");
 const redis = require("redis");
+const mongoose = require("mongoose");
 const timer = require('./timer');
+
+mongoose.connect(process.env.DB_LOCAL_URI, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", error => console.log(error));
+db.once("open", () => console.log("connection to db established"));
 
 const app = express();
 const port = process.env.PORT || 3000;
